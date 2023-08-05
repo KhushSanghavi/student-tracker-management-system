@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
+// import { useEffect } from 'react';
 import './loginform.modules.css';
 import Navbar from '../navbar/Navbar';
+// import { Link } from 'react-router-dom';
 
-function Loginform({role}) {
+
+
+function Loginform() {
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 

@@ -1,28 +1,27 @@
-import React from "react";
-import Navbar from "../navbar/Navbar";
-import "./Loginas.modules.css";
-import { useState } from "react";
-import Login from "../logIn form/loginform";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import Navbar from '../navbar/Navbar';
+import './Loginas.modules.css';
 
 const Loginas = () => {
-const [selectedRole, setSelectedRole] = useState(null);
+  const navigate = useNavigate();
 
-  const handleButtonClick = (role) => {
-    setSelectedRole(role);
-}
+  const handleButtonClick = (path) => {
+    navigate(path);
+  };
+
   return (
     <>
       <Navbar />
       <div className="home-container">
         <h2>LogIn As</h2>
         <div className="button-container">
-          <button onClick={() => handleButtonClick("Teacher/Admin")}>
-            Teacher/Admin
+          <button onClick={() => handleButtonClick('/admin-teacher')}>
+            Admin/Teacher
           </button>
-          <button onClick={() => handleButtonClick("Mentor")}>Mentor</button>
-          <button onClick={() => handleButtonClick("Student")}>Student</button>
+          <button onClick={() => handleButtonClick('/mentor')}>Mentor</button>
+          <button onClick={() => handleButtonClick('/student')}>Student</button>
         </div>
-        {selectedRole && <Login role={selectedRole} />}
       </div>
     </>
   );
