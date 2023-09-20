@@ -6,8 +6,8 @@ import './Loginas.modules.css';
 const Loginas = () => {
   const navigate = useNavigate();
 
-  const handleButtonClick = (path) => {
-    navigate(path);
+  const handleButtonClick = (selection) => {
+    navigate('/login', { state: { selection } });
   };
 
   return (
@@ -16,11 +16,11 @@ const Loginas = () => {
       <div className="home-container">
         <h2>LogIn As</h2>
         <div className="button-container">
-          <button onClick={() => handleButtonClick('/admin-teacher')}>
+          <button onClick={() => handleButtonClick('admin-teacher')}>
             Admin/Teacher
           </button>
-          <button onClick={() => handleButtonClick('/mentor')}>Mentor</button>
-          <button onClick={() => handleButtonClick('/student')}>Student</button>
+          <button onClick={() => handleButtonClick('mentor')}>Mentor</button>
+          <button onClick={() => handleButtonClick('student')}>Student</button>
         </div>
       </div>
     </>
