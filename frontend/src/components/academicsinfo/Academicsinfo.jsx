@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import "./Academicsinfo.modules.css";
 
 function Academicsinfo() {
   const [formData, setFormData] = useState({
@@ -35,20 +35,31 @@ function Academicsinfo() {
       formDataToSend.append("studentClass", formData.studentClass);
       formDataToSend.append("rollNo", formData.rollNo);
       formDataToSend.append("competitionsImage", formData.competitionsImage);
-      formDataToSend.append("projectpresentationsImage", formData.projectpresentationsImage);
-      formDataToSend.append("paperPresentationsImage", formData.paperPresentationsImage);
+      formDataToSend.append(
+        "projectpresentationsImage",
+        formData.projectpresentationsImage
+      );
+      formDataToSend.append(
+        "paperPresentationsImage",
+        formData.paperPresentationsImage
+      );
       formDataToSend.append("onlineCourseImage", formData.onlineCourseImage);
       formDataToSend.append("copyrightImage", formData.copyrightImage);
       formDataToSend.append("internshipImage", formData.internshipImage);
       formDataToSend.append("certificationImage", formData.certificationImage);
 
-      await axios.post("http://localhost:5000/api/addStudentData", formDataToSend, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await axios.post(
+        "http://localhost:5000/api/addStudentData",
+        formDataToSend,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       alert("Student data added successfully!");
+      // form.reset();
     } catch (error) {
       if (error.response) {
         // Server responded with an error status code
@@ -67,111 +78,118 @@ function Academicsinfo() {
   };
 
   return (
-    <div>
-      <h2>Add Student</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Class</label>
-          <input
-            type="text"
-            name="studentClass"
-            value={formData.studentClass}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Roll No.</label>
-          <input
-            type="Number"
-            name="rollNo"
-            value={formData.rollNo}
-            onChange={handleChange}
-            required
-          />
-        </div>
+    <div className="body">
+      <div class="container">
+        <div class="title">Add Student</div>
+        <form onSubmit={handleSubmit}>
+          <div class="user__details">
+            <div class="input__box">
+              <span class="details">Name</span>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div class="input__box">
+              <span class="details">Class</span>
+              <input
+                type="text"
+                name="studentClass"
+                value={formData.studentClass}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div class="input__box">
+              <span class="details">Roll No.</span>
+              <input
+                type="Number"
+                name="rollNo"
+                value={formData.rollNo}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-        {/* Image upload fields */}
-        <div>
-          <label>Participate/Organize competitions (Technical/Non-technical)</label>
-          <input
-            type="file"
-            name="competitionsImage"
-            onChange={handleChange}
-          />
-        </div>
+            {/* Image upload fields */}
+            <div class="input__box">
+              <span class="details">
+                Participate/Organize competitions (Technical/Non-technical)
+              </span>
+              <input
+                type="file"
+                name="competitionsImage"
+                onChange={handleChange}
+              />
+            </div>
 
-        <div>
-          <label>Project Presentations Image</label>
-          <input
-            type="file"
-            name="projectpresentationsImage"
-            onChange={handleChange}
-          />
-        </div>
+            <div class="input__box">
+              <span class="details">Project Presentations Image</span>
+              <input
+                type="file"
+                name="projectpresentationsImage"
+                onChange={handleChange}
+              />
+            </div>
 
-        <div>
-          <label>Paper Presentations Image</label>
-          <input
-            type="file"
-            name="paperPresentationsImage"
-            onChange={handleChange}
-          />
-        </div>
+            <div class="input__box">
+              <span class="details">Paper Presentations Image</span>
+              <input
+                type="file"
+                name="paperPresentationsImage"
+                onChange={handleChange}
+              />
+            </div>
 
-        <div>
-          <label>Online Course Image</label>
-          <input
-            type="file"
-            name="onlineCourseImage"
-            onChange={handleChange}
-          />
-        </div>
+            <div class="input__box">
+              <span class="details">Online Course Image</span>
+              <input
+                type="file"
+                name="onlineCourseImage"
+                onChange={handleChange}
+              />
+            </div>
 
-        <div>
-          <label>Copyright Image</label>
-          <input
-            type="file"
-            name="copyrightImage"
-            onChange={handleChange}
-          />
-        </div>
+            <div class="input__box">
+              <span class="details">Copyright Image</span>
+              <input
+                type="file"
+                name="copyrightImage"
+                onChange={handleChange}
+              />
+            </div>
 
-        <div>
-          <label>Internship Image</label>
-          <input
-            type="file"
-            name="internshipImage"
-            onChange={handleChange}
-          />
-        </div>
+            <div class="input__box">
+              <span class="details">Internship Image</span>
+              <input
+                type="file"
+                name="internshipImage"
+                onChange={handleChange}
+              />
+            </div>
 
-        <div>
-          <label>Certification Image</label>
-          <input
-            type="file"
-            name="certificationImage"
-            onChange={handleChange}
-          />
-        </div>
+            <div class="input__box">
+              <span class="details">Certification Image</span>
+              <input
+                type="file"
+                name="certificationImage"
+                onChange={handleChange}
+              />
+            </div>
+          </div>
 
-        {/* Add similar input elements for other image uploads */}
-        
-        <button type="submit">Submit</button>
-      </form>
+          {/* Add similar input elements for other image uploads */}
+
+          <button type="submit" class="button">
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
-
 
 export default Academicsinfo;
