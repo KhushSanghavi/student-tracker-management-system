@@ -15,19 +15,16 @@
   --sub-grey: #d9d9d9;
 }
 
-body {
-  overflow: hidden;
-}
-
 .body {
   display: flex;
-  height: 100vh;
-  overflow: hidden;
-  justify-content: center; /*center vertically */
+  height: 100%;
+  justify-content: center; /*center vertically*/
   align-items: center; /* center horizontally */
   background: linear-gradient(135deg, var(--main-blue), var(--main-purple));
   padding: 10px;
   color: black;
+  overflow: hidden;
+  margin-bottom: 0;
 }
 
 span {
@@ -41,7 +38,7 @@ div {
 /* container and form */
 .container {
   display: block;
-  max-width: 800px;
+  max-width: 1000px;
   width: 100%;
   background: #fff;
   padding: 25px 30px;
@@ -144,7 +141,7 @@ form input[type="radio"] {
 /* submit button */
 form .button {
   height: 45px;
-  margin: 10px 0;
+  margin: 45px 0;
   /* }
 
 form .button input { */
