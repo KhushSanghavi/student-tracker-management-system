@@ -1,5 +1,5 @@
 import React from "react";
-import "./PersonalInfo.modules.css";
+import "./Personalinfo.modules.css";
 
 const Personalinfo = () => {
   const handleSubmit = async (e) => {

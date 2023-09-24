@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import styled from 'styled-components';
 
 function TeachersDataAcademicsInfo()  {
   const [students, setStudents] = useState([]);
@@ -16,6 +17,7 @@ function TeachersDataAcademicsInfo()  {
   }, []);
 
   return (
+    <StyledWrapper>
     <div>
       <h2>Display Student Data</h2>
       <table>
@@ -53,7 +55,81 @@ function TeachersDataAcademicsInfo()  {
         </tbody>
       </table>
     </div>
+    </StyledWrapper>
   );
 }
+
+const StyledWrapper = styled.section`
+/* Style for the entire container */
+div {
+  text-align: center;
+  margin: 20px;
+}
+
+/* Style for the table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Style for table headers */
+th {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: left;
+}
+
+/* Style for table cells */
+td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+/* Style for table rows */
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Style for links in table cells */
+td a {
+  text-decoration: none;
+  color: #007BFF;
+  font-weight: bold;
+}
+
+/* Hover effect for links */
+td a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+  table {
+    border: 0;
+  }
+  
+  th, td {
+    border: 0;
+    padding: 8px;
+    display: block;
+  }
+
+  th {
+    background-color: #333;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  tr {
+    margin-bottom: 10px;
+  }
+
+  td {
+    text-align: left;
+  }
+}
+`;
 
 export default TeachersDataAcademicsInfo
