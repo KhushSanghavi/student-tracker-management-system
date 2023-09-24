@@ -59,6 +59,7 @@ function Academicsinfo() {
       );
 
       alert("Student data added successfully!");
+      event.target.reset();
       // form.reset();
     } catch (error) {
       if (error.response) {
