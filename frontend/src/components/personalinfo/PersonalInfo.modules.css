@@ -37,6 +37,11 @@ div {
 
 /* container and form */
 .container {
+  overflow-y: scroll;
+    max-height: 700px;
+    max-width: 400px;
+    text-align: center;
+    background-color: azure;
   display: block;
   max-width: 1000px;
   width: 100%;

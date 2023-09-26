@@ -108,11 +108,11 @@ const Personalinfo = () => {
       })
         .then((response) => {
           if (response.ok) {
-            console.log("Form submitted successfully");
-            alert("Form submitted successfully");
-            // Reset the form
+            alert('Form submitted succesfully');
+            console.log('Form submitted successfully');
             form.reset();
           } else {
+            alert('Failed To submit form!')
             console.error("Error:", response.statusText);
           }
         })
@@ -329,7 +329,7 @@ const Personalinfo = () => {
             </div>
           </div>
           {/* <!-- Submit Button --> */}
-          <button type="submit" class="button">
+          <button onClick={alert} type="submit" class="button">
             Submit
           </button>
         </form>
