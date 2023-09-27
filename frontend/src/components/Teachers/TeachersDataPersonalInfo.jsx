@@ -37,6 +37,7 @@ const TeachersDataPersonalInfo = () => {
       {loading ? (
         <p>Loading...</p>
       ) : (
+        <div className='container'>
         <table border="1">
           <thead>
             <tr>
@@ -87,6 +88,7 @@ const TeachersDataPersonalInfo = () => {
             ))}
           </tbody>
         </table>
+        </div>
       )}
     </div>
     </StyledWrapper>
@@ -98,6 +100,15 @@ const StyledWrapper = styled.section`
 div {
     text-align: center;
     margin: 20px;
+  }
+
+  .container{
+    overflow-y: scroll;
+    overflow-x: scroll;
+    max-height: 10000px;
+    max-width: 10000px;
+    text-align: center;
+    background-color: azure;
   }
   
   /* Style for the table header */
