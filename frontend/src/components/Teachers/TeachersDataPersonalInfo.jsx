@@ -59,6 +59,7 @@ const TeachersDataPersonalInfo = () => {
               <th>Mother Qualification</th>
               <th>Mother Designation</th>
               <th>Mother Working Place</th>
+              <th>Mentor Name</th>
               {/* Add more table headers for other fields as needed */}
             </tr>
           </thead>
@@ -83,6 +84,7 @@ const TeachersDataPersonalInfo = () => {
                 <td>{data.motherQualification}</td>
                 <td>{data.motherDesignation}</td>
                 <td>{data.motherWorkingPlace}</td>
+                <td>{data.mentorName}</td>
                 {/* Add more table cells for other fields as needed */}
               </tr>
             ))}

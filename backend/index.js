@@ -39,7 +39,7 @@ app.post(
   ]),
   async (req, res) => {
     try {
-      const { name, studentClass, rollNo } = req.body;
+      const { name, studentClass, rollNo, mentorName } = req.body;
 
       if (!studentClass) {
         return res.status(400).json({ error: "studentClass is required" });
@@ -49,6 +49,7 @@ app.post(
         name,
         studentClass,
         rollNo,
+        mentorName,
       });
 
       // Save uploaded images as buffers
@@ -79,7 +80,7 @@ app.post(
 app.get('/api/display-student-data', async (req, res) => {
   try {
     // Fetch student data from MongoDB using your Student model
-    const students = await Student.find({}, 'name studentClass rollNo competitionsImage projectpresentationsImage paperPresentationsImage onlineCourseImage copyrightImage internshipImage certificationImage');
+    const students = await Student.find({}, 'name studentClass rollNo mentorName competitionsImage projectpresentationsImage paperPresentationsImage onlineCourseImage copyrightImage internshipImage certificationImage');
 
     // Map the students data to include base64 certificate URLs
     const studentsWithBase64Images = students.map((student) => {
@@ -88,6 +89,7 @@ app.get('/api/display-student-data', async (req, res) => {
         name: student.name,
         studentClass: student.studentClass,
         rollNo: student.rollNo,
+        mentorName: student.mentorName,
         // Add base64 URLs for certificate images
         competitionsImage: student.competitionsImage ? `data:image/jpeg;base64,${student.competitionsImage.toString("base64")}` : null,
         projectpresentationsImage: student.projectpresentationsImage ? `data:image/jpeg;base64,${student.projectpresentationsImage.toString("base64")}` : null,

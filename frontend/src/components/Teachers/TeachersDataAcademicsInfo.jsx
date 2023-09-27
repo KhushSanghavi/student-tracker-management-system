@@ -26,6 +26,7 @@ function TeachersDataAcademicsInfo()  {
             <th>Name</th>
             <th>Class</th>
             <th>Roll No.</th>
+            <th>Mentor Name</th>
             <th>Participate/Organize competitions </th>
             <th>Project Presentation </th>
             <th>Paper Presentations </th>
@@ -42,6 +43,7 @@ function TeachersDataAcademicsInfo()  {
               <td>{student.name}</td>
               <td>{student.studentClass}</td>
               <td>{student.rollNo}</td>
+              <td>{student.mentorName}</td>
               <td><a href={student.competitionsImage} target="_blank" rel="noopener noreferrer">Competitions</a></td>
               <td><a href={student.projectpresentationsImage} target="_blank" rel="noopener noreferrer"> Project Presentations</a></td>
               <td><a href={student.paperPresentationsImage} target="_blank" rel="noopener noreferrer">Paper Presentations </a></td>
