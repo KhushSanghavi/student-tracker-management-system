@@ -72,6 +72,19 @@ function Academicsinfo() {
       );
 
       alert("Student data added successfully!");
+      setFormData({
+        name: "",
+        studentClass: "",
+        rollNo: "",
+        mentorName: "",
+        competitionsImage: null,
+        projectpresentationsImage: null,
+        paperPresentationsImage: null,
+        onlineCourseImage: null,
+        copyrightImage: null,
+        internshipImage: null,
+        certificationImage: null,
+      });
       event.target.reset();
       // form.reset();
     } catch (error) {
