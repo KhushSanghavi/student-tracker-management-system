@@ -5,19 +5,86 @@ const Register = () => {
     username: "",
     email: "",
     password: "",
-    userType: "student", // Default value is 'student'
+    userType: "student",
   });
+
+  const [errors, setErrors] = useState({});
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    // Clear the error message when the user starts typing again
+    setErrors({ ...errors, [name]: "" });
   };
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   // Perform form validation
+  //   const validationErrors = validateForm(formData);
+  //   if (Object.keys(validationErrors).length === 0) {
+  //     // Validation passed; you can submit the form or perform registration logic here
+  //     console.log("Form submitted with data:", formData);
+  //   } else {
+  //     // Validation failed; set the errors state to display error messages
+  //     setErrors(validationErrors);
+  //   }
+  // };
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // You can perform form validation and registration logic here.
-    // Typically, you would send a request to your server to create a new user.
-    console.log("Form submitted with data:", formData);
+    // Perform form validation
+    const validationErrors = validateForm(formData);
+    if (Object.keys(validationErrors).length === 0) {
+      // Validation passed; send the data to the server
+      try {
+        const response = await fetch("/api/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+
+        if (response.ok) {
+          console.log("Form submitted successfully");
+          // Optionally, you can redirect the user or perform other actions upon successful submission.
+        } else {
+          console.error("Form submission failed");
+          // Handle the error, such as displaying an error message to the user.
+        }
+      } catch (error) {
+        console.error("Form submission error:", error);
+      }
+    } else {
+      // Validation failed; set the errors state to display error messages
+      setErrors(validationErrors);
+    }
+  };
+
+  const validateForm = (data) => {
+    const errors = {};
+
+    // Basic validation examples (customize as needed)
+    if (!data.username.trim()) {
+      errors.username = "Username is required";
+    }
+
+    if (!data.email.trim()) {
+      errors.email = "Email is required";
+    } else if (!isValidEmail(data.email)) {
+      errors.email = "Invalid email format";
+    }
+
+    if (!data.password.trim()) {
+      errors.password = "Password is required";
+    }
+
+    return errors;
+  };
+
+  const isValidEmail = (email) => {
+    // You can use a regular expression or a library like validator.js for more robust email validation
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    return emailRegex.test(email);
   };
 
   return (
@@ -34,6 +101,7 @@ const Register = () => {
             onChange={handleInputChange}
             required
           />
+          {errors.username && <div className="error">{errors.username}</div>}
         </div>
         <div>
           <label htmlFor="email">Email:</label>
@@ -45,6 +113,7 @@ const Register = () => {
             onChange={handleInputChange}
             required
           />
+          {errors.email && <div className="error">{errors.email}</div>}
         </div>
         <div>
           <label htmlFor="password">Password:</label>
@@ -56,6 +125,7 @@ const Register = () => {
             onChange={handleInputChange}
             required
           />
+          {errors.password && <div className="error">{errors.password}</div>}
         </div>
         <div>
           <label htmlFor="userType">User Type:</label>

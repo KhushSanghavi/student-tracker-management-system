@@ -1,24 +1,23 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 //import Navbar from '../navbar/Navbar';
-import './Loginas.modules.css';
-import Name from '../navbar/cllg-title.png'
-import main from '../navbar/main.svg'
-import Logo from '../navbar/Logo';
+import "./Loginas.modules.css";
+import Name from "../navbar/cllg-title.png";
+import main from "../navbar/main.svg";
+import Logo from "../navbar/Logo";
 
 const Loginas = () => {
   const navigate = useNavigate();
 
   const handleButtonClick = (selection) => {
-    navigate('/login', { state: { selection } });
+    navigate("/login", { state: { selection } });
   };
 
   return (
-    
     <>
-    <nav>
+      <nav>
         <Logo />
-        <div className='name'>
+        <div className="name">
           <img src={Name} alt="name" />
         </div>
       </nav>
@@ -32,6 +31,16 @@ const Loginas = () => {
             any event that piques your interest.
           </p>
 
+          <div>
+            <button
+              onClick={() => {
+                navigate("/register");
+              }}
+            >
+              Register
+            </button>
+          </div>
+
           <div
             className="button-container"
             style={{
@@ -39,13 +48,20 @@ const Loginas = () => {
               display: "flex",
               justifyContent: "space-between",
               width: "30%",
-            }}>
-          <button onClick={() => handleButtonClick('admin-teacher')}>Login/Teacher</button>
-          <button onClick={() => handleButtonClick('mentor')}>Login/Mentor</button>
-          <button onClick={() => handleButtonClick('student')}>Login/Student</button>
+            }}
+          >
+            <button onClick={() => handleButtonClick("admin-teacher")}>
+              Login/Teacher
+            </button>
+            <button onClick={() => handleButtonClick("mentor")}>
+              Login/Mentor
+            </button>
+            <button onClick={() => handleButtonClick("student")}>
+              Login/Student
+            </button>
+          </div>
         </div>
-      </div>
-      <img
+        <img
           src={main}
           alt="job hunt"
           width="450px"
