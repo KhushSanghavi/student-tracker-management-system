@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { useNavigate,useLocation } from 'react-router-dom';
-import './loginform.modules.css';
-import Navbar from '../navbar/Navbar';
+import React, { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import "./loginform.modules.css";
+import Navbar from "../navbar/Navbar";
 
 function Loginform() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate(); // Use useNavigate instead of useHistory
   const location = useLocation();
 
@@ -20,24 +20,24 @@ function Loginform() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-     // Here you can handle login logic, e.g., send the data to an API for authentication.
-     console.log('Username:', username);
-     console.log('Password:', password);
-    
+    // Here you can handle login logic, e.g., send the data to an API for authentication.
+    console.log("Username:", username);
+    console.log("Password:", password);
+
     // Check if the username and password match your criteria for successful login
-    if (username === 'admin' && password === 'password') {
-      // Redirect based on the user's previous selection
-      if (location.state?.selection === 'admin-teacher') {
-        navigate('/teacher'); // Use navigate to redirect to the teacher page
-      } else if (location.state?.selection === 'mentor') {
-        navigate('/mentor'); // Use navigate to redirect to the mentor page
-      } else if (location.state?.selection === 'student') {
-        navigate('/student'); // Use navigate to redirect to the student page
-      }
-    } else {
-      // Handle login failure here if needed
-      console.log('Login failed');
+    // if (username === 'admin' && password === 'password') {
+    // Redirect based on the user's previous selection
+    if (location.state?.selection === "admin-teacher") {
+      navigate("/teacher"); // Use navigate to redirect to the teacher page
+    } else if (location.state?.selection === "mentor") {
+      navigate("/mentor"); // Use navigate to redirect to the mentor page
+    } else if (location.state?.selection === "student") {
+      navigate("/student"); // Use navigate to redirect to the student page
     }
+    // } else {
+    // Handle login failure here if needed
+    // console.log('Login failed');
+    // }
   };
 
   return (
