@@ -36,7 +36,7 @@ const Register = () => {
     if (Object.keys(validationErrors).length === 0) {
       // Validation passed; send the data to the server
       try {
-        const response = await fetch("/api/register", {
+        const response = await fetch("http://localhost:5000/api/register", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
