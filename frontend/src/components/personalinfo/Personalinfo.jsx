@@ -1,7 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./PersonalInfo.modules.css";
 
 const Personalinfo = () => {
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/send-mentor", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          console.log(result);
+          setAllPosts(result.data);
+        }
+      } catch (error) {
+        alert(error);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
+  const [allPosts, setAllPosts] = useState(null);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -31,7 +56,7 @@ const Personalinfo = () => {
       motherQualification: form.querySelector("#motherQualification").value,
       motherDesignation: form.querySelector("#motherDesignation").value,
       motherWorkingPlace: form.querySelector("#motherWorkingPlace").value,
-      mentorName:form.querySelector("#mentorName").value
+      mentorName: form.querySelector("#mentorName").value,
       // Add other form fields in the same way
     };
 
@@ -55,7 +80,7 @@ const Personalinfo = () => {
       "motherQualification",
       "motherDesignation",
       "motherWorkingPlace",
-      "mentorName"
+      "mentorName",
     ];
 
     requiredFields.forEach((fieldName) => {
@@ -330,20 +355,20 @@ const Personalinfo = () => {
               />
             </div>
 
-{/* mentors name */}
+            {/* mentors name */}
             <div class="input__box">
               <label class="details" for="mentorName">
                 Mentor Name:
               </label>
               <select id="mentorName" name="mentorName" required>
-                <option value="">Select Mentor Name</option>
-                <option value="name1">name 1</option>
-                <option value="name2">name 2</option>
+                {allPosts.map((post) => (
+                  <option value={post.name}>{post.name}</option>
+                ))}
               </select>
             </div>
           </div>
           {/* <!-- Submit Button --> */}
-          <button  type="submit" class="button">
+          <button type="submit" class="button">
             Submit
           </button>
         </form>

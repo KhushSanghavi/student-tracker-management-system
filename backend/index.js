@@ -8,6 +8,7 @@ const register = require("./routes/register");
 const academicForm = require("./routes/academicForm");
 const displayAcademicForm = require("./routes/displayAcademicForm");
 const personalInfoForm = require("./routes/personalForm");
+const retrieveMentor = require("./routes/retrieveMentor");
 
 // Create an Express.js app
 const app = express();
@@ -22,6 +23,7 @@ app.use("/api/register", register);
 app.use("/api/addStudentData", academicForm);
 app.use("/api/display-student-data", displayAcademicForm);
 app.use("/api/submit-form", personalInfoForm);
+app.use("/api/send-mentor", retrieveMentor);
 
 // Start the Express.js server
 app.listen(port, () => {
