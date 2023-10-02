@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./loginform.modules.css";
-import Navbar from "../navbar/Navbar";
-
+import Logo from "../navbar/Logo";
+import Name from "../navbar/cllg-title.png";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
+import jwt_decode from "jwt-decode";
+import Wrapper from "./RegisterAndLoginPage";
 function Loginform() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -42,31 +46,57 @@ function Loginform() {
 
   return (
     <>
-      <Navbar />
+      <nav>
+        <Logo />
+        <div className="name">
+          <img src={Name} alt="name" />
+        </div>
+      </nav>
+
       <div className="login">
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="username">Username:</label>
-            <input
-              type="text"
-              id="username"
-              value={username}
-              onChange={handleUsernameChange}
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={handlePasswordChange}
-              required
-            />
-          </div>
-          <button type="submit">Submit</button>
-        </form>
+        <Wrapper>
+          <form className="form" onSubmit={handleSubmit}>
+            <Logo />
+            <div>
+              <label className="form" htmlFor="username">
+                Username:
+              </label>
+              <input
+                type="text"
+                id="username"
+                value={username}
+                onChange={handleUsernameChange}
+                required
+              />
+            </div>
+            <div>
+              <label className="form" htmlFor="password">
+                Password:
+              </label>
+              <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={handlePasswordChange}
+                required
+              />
+            </div>
+            <GoogleOAuthProvider clientId="679749642395-30mmhi9f6ledqhg7mql8q8soe5d25paf.apps.googleusercontent.com">
+              <GoogleLogin
+                onSuccess={(credentialResponse) => {
+                  var decoded = jwt_decode(credentialResponse.credential);
+
+                  console.log(decoded);
+                }}
+                onError={() => {
+                  console.log("Login Failed");
+                }}
+                useOneTap
+              />
+            </GoogleOAuthProvider>
+            <button type="submit">Submit</button>
+          </form>
+        </Wrapper>
       </div>
     </>
   );

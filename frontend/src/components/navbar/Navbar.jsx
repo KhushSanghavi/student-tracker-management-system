@@ -1,6 +1,6 @@
 import React from 'react';
-import Logo from './sakec logo.png';
-import Name from './SAKEC_Top.png';
+import Logo from './cllg-logo.png';
+import Name from './cllg-title.png';
 import './Navbar.modules.css';
 
 const Navbar = () => {

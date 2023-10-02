@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; // Import Axios library
+import styled from 'styled-components';
+import * as XLSX from 'xlsx';
+
+
 
 const TeachersDataPersonalInfo = () => {
   const [formData, setFormData] = useState([]);
@@ -17,14 +21,23 @@ const TeachersDataPersonalInfo = () => {
         setLoading(false);
       });
   }, []); // Empty dependency array to run this effect only once
+  const exportToExcel = () => {
+    const ws = XLSX.utils.json_to_sheet(formData);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'StudentData');
+    XLSX.writeFile(wb, 'student_data.xlsx');
+  };
 
 
   return (
+    <StyledWrapper>
     <div>
       <h1>Teachers will see students form data</h1>
+      <button onClick={exportToExcel}>Export to Excel</button>
       {loading ? (
         <p>Loading...</p>
       ) : (
+        <div className='container'>
         <table border="1">
           <thead>
             <tr>
@@ -46,6 +59,7 @@ const TeachersDataPersonalInfo = () => {
               <th>Mother Qualification</th>
               <th>Mother Designation</th>
               <th>Mother Working Place</th>
+              <th>Mentor Name</th>
               {/* Add more table headers for other fields as needed */}
             </tr>
           </thead>
@@ -70,14 +84,95 @@ const TeachersDataPersonalInfo = () => {
                 <td>{data.motherQualification}</td>
                 <td>{data.motherDesignation}</td>
                 <td>{data.motherWorkingPlace}</td>
+                <td>{data.mentorName}</td>
                 {/* Add more table cells for other fields as needed */}
               </tr>
             ))}
           </tbody>
         </table>
+        </div>
       )}
     </div>
+    </StyledWrapper>
   );
 };
+
+const StyledWrapper = styled.section`
+/* Style for the entire table container */
+div {
+    text-align: center;
+    margin: 20px;
+  }
+
+  .container{
+    overflow-y: scroll;
+    overflow-x: scroll;
+    max-height: 10000px;
+    max-width: 10000px;
+    text-align: center;
+    background-color: azure;
+  }
+  
+  /* Style for the table header */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    border-spacing: 0;
+  }
+  
+  th, td {
+  border: 1px solid #ddd;
+  color: #fff;
+  padding: 10px;
+  text-align: left;
+  }
+  
+  th {
+    
+    background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: left;
+  }
+  
+  /* Style for the loading message */
+  p {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Style for the table rows */
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Style for table cells */
+  td {
+    text-decoration: none;
+   color: #007BFF;
+   font-weight: bold;
+  }
+  
+  /* Responsive style for the table */
+  @media (max-width: 768px) {
+    table {
+      border: 0;
+    }
+    th, td {
+      border: 0;
+    padding: 8px;
+    display: block;
+    }
+    th {
+      background-color: #333;
+    color: #fff;
+    font-weight: bold;
+    }
+    tr {
+      margin-bottom: 10px;
+      display: block;
+    }
+  }
+`;
 
 export default TeachersDataPersonalInfo;

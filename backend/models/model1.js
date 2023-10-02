@@ -77,6 +77,10 @@ const formDataSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
+    mentorName:{
+      type:String,
+      required:true,
+    }
   });
   
   const FormData = mongoose.model("FormData", formDataSchema);

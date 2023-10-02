@@ -31,6 +31,7 @@ const Personalinfo = () => {
       motherQualification: form.querySelector("#motherQualification").value,
       motherDesignation: form.querySelector("#motherDesignation").value,
       motherWorkingPlace: form.querySelector("#motherWorkingPlace").value,
+      mentorName:form.querySelector("#mentorName").value
       // Add other form fields in the same way
     };
 
@@ -54,6 +55,7 @@ const Personalinfo = () => {
       "motherQualification",
       "motherDesignation",
       "motherWorkingPlace",
+      "mentorName"
     ];
 
     requiredFields.forEach((fieldName) => {
@@ -108,11 +110,11 @@ const Personalinfo = () => {
       })
         .then((response) => {
           if (response.ok) {
+            alert("Form submitted succesfully");
             console.log("Form submitted successfully");
-            alert("Form submitted successfully");
-            // Reset the form
             form.reset();
           } else {
+            alert("Failed To submit form!");
             console.error("Error:", response.statusText);
           }
         })
@@ -327,9 +329,21 @@ const Personalinfo = () => {
                 required
               />
             </div>
+
+{/* mentors name */}
+            <div class="input__box">
+              <label class="details" for="mentorName">
+                Mentor Name:
+              </label>
+              <select id="mentorName" name="mentorName" required>
+                <option value="">Select Mentor Name</option>
+                <option value="name1">name 1</option>
+                <option value="name2">name 2</option>
+              </select>
+            </div>
           </div>
           {/* <!-- Submit Button --> */}
-          <button type="submit" class="button">
+          <button  type="submit" class="button">
             Submit
           </button>
         </form>

@@ -7,6 +7,7 @@ function Academicsinfo() {
     name: "",
     class: "",
     rollNo: "",
+    mentorName: "",
     competitionsImage: null,
     projectpresentationsImage: null,
     paperPresentationsImage: null,
@@ -28,12 +29,24 @@ function Academicsinfo() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    
 
     try {
+      if (
+        !formData.name ||
+        !formData.studentClass ||
+        !formData.rollNo ||
+        !formData.mentorName
+      ) {
+        alert("Please fill in all required fields.");
+        return;
+      }
+
       const formDataToSend = new FormData();
       formDataToSend.append("name", formData.name);
       formDataToSend.append("studentClass", formData.studentClass);
       formDataToSend.append("rollNo", formData.rollNo);
+      formDataToSend.append("mentorName", formData.mentorName);
       formDataToSend.append("competitionsImage", formData.competitionsImage);
       formDataToSend.append(
         "projectpresentationsImage",
@@ -59,6 +72,20 @@ function Academicsinfo() {
       );
 
       alert("Student data added successfully!");
+      setFormData({
+        name: "",
+        studentClass: "",
+        rollNo: "",
+        mentorName: "",
+        competitionsImage: null,
+        projectpresentationsImage: null,
+        paperPresentationsImage: null,
+        onlineCourseImage: null,
+        copyrightImage: null,
+        internshipImage: null,
+        certificationImage: null,
+      });
+      event.target.reset();
       // form.reset();
     } catch (error) {
       if (error.response) {
@@ -75,6 +102,7 @@ function Academicsinfo() {
         alert("An error occurred.");
       }
     }
+    
   };
 
   return (
@@ -112,6 +140,23 @@ function Academicsinfo() {
                 onChange={handleChange}
                 required
               />
+            </div>
+            {/* mentors name */}
+            <div class="input__box">
+              <label class="details" for="mentorName">
+                Mentor Name:
+              </label>
+              <select
+                id="mentorName"
+                name="mentorName"
+                required
+                value={formData.mentorName}
+                onChange={handleChange} // Make sure you have an handleChange function to update formData
+              >
+                <option value="">Select Mentor Name</option>
+                <option value="name1">name 1</option>
+                <option value="name2">name 2</option>
+              </select>
             </div>
 
             {/* Image upload fields */}
