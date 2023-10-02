@@ -13,6 +13,7 @@ router.get("/", async (req, res) => {
     const formData = await FormData.find();
 
     // Send the data as JSON
+    // console.log(formData);
     res.status(200).json(formData);
   } catch (err) {
     console.error(err);

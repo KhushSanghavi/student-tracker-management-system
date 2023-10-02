@@ -29,19 +29,19 @@ function Loginform() {
     console.log("Password:", password);
 
     // Check if the username and password match your criteria for successful login
-    // if (username === 'admin' && password === 'password') {
-    // Redirect based on the user's previous selection
-    if (location.state?.selection === "admin-teacher") {
-      navigate("/teacher"); // Use navigate to redirect to the teacher page
-    } else if (location.state?.selection === "mentor") {
-      navigate("/mentor"); // Use navigate to redirect to the mentor page
-    } else if (location.state?.selection === "student") {
-      navigate("/student"); // Use navigate to redirect to the student page
+    if (username === "admin" && password === "password") {
+      // Redirect based on the user's previous selection
+      if (location.state?.selection === "admin-teacher") {
+        navigate("/teacher"); // Use navigate to redirect to the teacher page
+      } else if (location.state?.selection === "mentor") {
+        navigate("/mentor"); // Use navigate to redirect to the mentor page
+      } else if (location.state?.selection === "student") {
+        navigate("/student"); // Use navigate to redirect to the student page
+      }
+    } else {
+      // Handle login failure here if needed
+      console.log("Login failed");
     }
-    // } else {
-    // Handle login failure here if needed
-    // console.log('Login failed');
-    // }
   };
 
   return (
