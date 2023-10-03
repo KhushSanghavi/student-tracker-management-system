@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./loginform.modules.css";
 import Logo from "../navbar/Logo";
@@ -7,11 +7,31 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GoogleLogin } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
 import Wrapper from "./RegisterAndLoginPage";
+import Cookies from "js-cookie";
+
 function Loginform() {
+  const [userType, setUserType] = useState("");
+  const location = useLocation();
+
+  useEffect(() => {
+    console.log(location.state?.selection);
+    if (location.state?.selection === "admin-teacher") {
+      setUserType("admin");
+    } else if (location.state?.selection === "mentor") {
+      setUserType("mentor");
+    } else if (location.state?.selection === "student") {
+      setUserType("student");
+    }
+  }, []);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const loginName = username;
+  // Save the login name in a cookie with a specific name (e.g., 'loginName')
+  Cookies.set("loginName", loginName, { expires: 7 }); // 'expires' is the cookie expiration in days
+
   const navigate = useNavigate(); // Use useNavigate instead of useHistory
-  const location = useLocation();
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -21,29 +41,46 @@ function Loginform() {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Here you can handle login logic, e.g., send the data to an API for authentication.
-    console.log("Username:", username);
-    console.log("Password:", password);
+    console.log("Sending request with payload:", {
+      username,
+      password,
+      userType,
+    });
 
-    // Check if the username and password match your criteria for successful login
-    if (username === "admin" && password === "password") {
-      // Redirect based on the user's previous selection
-      if (location.state?.selection === "admin-teacher") {
-        navigate("/teacher"); // Use navigate to redirect to the teacher page
-      } else if (location.state?.selection === "mentor") {
-        navigate("/mentor"); // Use navigate to redirect to the mentor page
-      } else if (location.state?.selection === "student") {
-        navigate("/student"); // Use navigate to redirect to the student page
+    try {
+      const response = await fetch("http://localhost:5000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password, userType }),
+      });
+
+      console.log("Response status:", response.status);
+
+      if (response.ok) {
+        const data = await response.json();
+
+        if (data.message === "Login successful") {
+          if (userType) {
+            navigate(`/${userType}`);
+          }
+        } else {
+          // Handle login failure here, e.g., show an error message to the user
+          console.log("Login failed");
+        }
+      } else {
+        // Handle other response statuses here, e.g., unauthorized
+        console.log("Error:", response);
       }
-    } else {
-      // Handle login failure here if needed
-      console.log("Login failed");
+    } catch (error) {
+      console.error("wrong password");
+      console.error("Error:", error);
     }
   };
-
   return (
     <>
       <nav>

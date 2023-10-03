@@ -1,22 +1,30 @@
+import Cookies from "js-cookie";
 import React, { useState, useEffect } from "react";
 import axios from "axios"; // Import Axios library
 import styled from "styled-components";
 import * as XLSX from "xlsx";
+import "./PersonalInfo.modules.css";
 
 const MentorDataPersonalInfo = () => {
   const [mentorData, setMentorData] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const getCookie = Cookies.get("loginName");
+
+  console.log(getCookie);
 
   useEffect(() => {
     // Use Axios to make the GET request
     axios
       .get("http://localhost:5000/api/display-form")
       .then((response) => {
+        console.log(response.data);
         const filteredData = response.data.filter(
-          (data) => data.mentorName === "vismay"
+          (data) => data.mentorName === getCookie
         );
         setMentorData(filteredData);
         setLoading(false);
+        console.log(filteredData);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -30,7 +38,7 @@ const MentorDataPersonalInfo = () => {
     XLSX.writeFile(wb, "student_data.xlsx");
   };
 
-  // console.log(mentorData[0].mentorName);
+  // console.log(mentorData);
   return (
     <StyledWrapper>
       <div>

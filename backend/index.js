@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const { connectToDatabase } = require("./DB/dbconnect"); // Import the connectToDatabase function
-
+const authRoutes = require("./AUTH/auth");
 const displayForm = require("./routes/displayForm");
 const register = require("./routes/register");
 const academicForm = require("./routes/academicForm");
@@ -16,7 +16,9 @@ const port = process.env.PORT || 5000;
 
 app.use(cors());
 // Middleware to parse JSON data
-app.use(bodyParser.json());
+app.use(express.json());
+
+app.use("/auth/login", authRoutes);
 
 app.use("/api/display-form", displayForm);
 app.use("/api/register", register);
