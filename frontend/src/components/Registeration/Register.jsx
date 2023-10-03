@@ -17,24 +17,12 @@ const Register = () => {
     setErrors({ ...errors, [name]: "" });
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   // Perform form validation
-  //   const validationErrors = validateForm(formData);
-  //   if (Object.keys(validationErrors).length === 0) {
-  //     // Validation passed; you can submit the form or perform registration logic here
-  //     console.log("Form submitted with data:", formData);
-  //   } else {
-  //     // Validation failed; set the errors state to display error messages
-  //     setErrors(validationErrors);
-  //   }
-  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Perform form validation
     const validationErrors = validateForm(formData);
     if (Object.keys(validationErrors).length === 0) {
-      // Validation passed; send the data to the server
+      // Validation passed; send the data to the server for registration
       try {
         const response = await fetch("http://localhost:5000/api/register", {
           method: "POST",
@@ -45,14 +33,14 @@ const Register = () => {
         });
 
         if (response.ok) {
-          console.log("Form submitted successfully");
-          // Optionally, you can redirect the user or perform other actions upon successful submission.
+          console.log("Registration successful");
+          // Optionally, you can redirect the user or perform other actions upon successful registration.
         } else {
-          console.error("Form submission failed");
+          console.error("Registration failed");
           // Handle the error, such as displaying an error message to the user.
         }
       } catch (error) {
-        console.error("Form submission error:", error);
+        console.error("Registration error:", error);
       }
     } else {
       // Validation failed; set the errors state to display error messages

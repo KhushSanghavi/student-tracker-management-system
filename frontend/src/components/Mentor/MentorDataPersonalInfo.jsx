@@ -13,7 +13,7 @@ const MentorDataPersonalInfo = () => {
       .get("http://localhost:5000/api/display-form")
       .then((response) => {
         const filteredData = response.data.filter(
-          (data) => data.mentorName === "vismay"
+          (data) => data.mentorName === "dev"
         );
         setMentorData(filteredData);
         setLoading(false);
