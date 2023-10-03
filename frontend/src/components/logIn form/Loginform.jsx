@@ -7,6 +7,8 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GoogleLogin } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
 import Wrapper from "./RegisterAndLoginPage";
+import Cookies from "js-cookie";
+
 function Loginform() {
   const [userType, setUserType] = useState("");
   const location = useLocation();
@@ -24,6 +26,11 @@ function Loginform() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const loginName = username;
+  // Save the login name in a cookie with a specific name (e.g., 'loginName')
+  Cookies.set("loginName", loginName, { expires: 7 }); // 'expires' is the cookie expiration in days
+
   const navigate = useNavigate(); // Use useNavigate instead of useHistory
 
   const handleUsernameChange = (event) => {

@@ -8,7 +8,7 @@ const { Mentor } = require("../models/model3");
 // Define your POST route to handle registration
 router.get("/", async (req, res) => {
   try {
-    const names = await Mentor.find({}, "name");
+    const names = await Mentor.find({}, "username");
     // console.log(names);
 
     res.status(201).json({ success: true, data: names });

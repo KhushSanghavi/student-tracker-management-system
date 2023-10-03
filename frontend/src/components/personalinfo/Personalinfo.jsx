@@ -362,7 +362,7 @@ const Personalinfo = () => {
               </label>
               <select id="mentorName" name="mentorName" required>
                 {allPosts?.map((post) => (
-                  <option value={post.name}>{post.name}</option>
+                  <option value={post.username}>{post.username}</option>
                 ))}
               </select>
             </div>
