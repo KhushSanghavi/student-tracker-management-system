@@ -58,13 +58,8 @@ function Loginform() {
         const data = await response.json();
 
         if (data.message === "Login successful") {
-          // Successfully logged in, redirect based on the user's role
-          if (location.state?.selection === "admin-teacher") {
-            navigate("/student");
-          } else if (location.state?.selection === "mentor") {
-            navigate("/mentor");
-          } else if (location.state?.selection === "student") {
-            navigate("/student"); // Use navigate to redirect to the student page
+          if (userType) {
+            navigate(`/${userType}`);
           }
         } else {
           // Handle login failure here, e.g., show an error message to the user
