@@ -4,6 +4,7 @@ import Loginas from "./loginas/Loginas";
 import Loginform from "./logIn form/Loginform";
 import Studentsform from "./Students data form/Studentsform";
 import Teachers from "./Teachers/Teachers";
+import AdminRegister from "./Teachers/AdminRegister";
 import Mentor from "./Mentor/Mentor";
 import Personalinfo from "./personalinfo/Personalinfo";
 import Academicsinfo from "./academicsinfo/Academicsinfo";
@@ -21,7 +22,8 @@ function Routess() {
         <Route path="/login" element={<Loginform />} />
         <Route path="/mentor" element={<Mentor />} />
         <Route path="/student" element={<Studentsform />} />
-        <Route path="/teacher" element={<Teachers />} />
+        <Route path="/admin" element={<Teachers />} />
+        <Route path="/admin/register" element={<AdminRegister />} />
         <Route path="/personalinfo" element={<Personalinfo />} />{" "}
         {/* Add the route for Personalinfo */}
         <Route path="/academicsinfo" element={<Academicsinfo />} />{" "}

@@ -50,8 +50,8 @@ const Loginas = () => {
               width: "30%",
             }}
           >
-            <button onClick={() => handleButtonClick("admin-teacher")}>
-              Login/Teacher
+            <button onClick={() => handleButtonClick("admin")}>
+              Login/ADMIN
             </button>
             <button onClick={() => handleButtonClick("mentor")}>
               Login/Mentor

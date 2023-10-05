@@ -15,7 +15,7 @@ function Loginform() {
 
   useEffect(() => {
     console.log(location.state?.selection);
-    if (location.state?.selection === "admin-teacher") {
+    if (location.state?.selection === "admin") {
       setUserType("admin");
     } else if (location.state?.selection === "mentor") {
       setUserType("mentor");

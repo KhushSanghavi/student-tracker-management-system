@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Register = () => {
+const AdminRegister = () => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -124,8 +124,8 @@ const Register = () => {
             onChange={handleInputChange}
           >
             <option value="student">Student</option>
-            {/* <option value="mentor">Mentor</option>
-            <option value="admin">Admin</option> */}
+            <option value="mentor">Mentor</option>
+            <option value="admin">Admin</option>
           </select>
         </div>
         <div>
@@ -136,4 +136,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default AdminRegister;
