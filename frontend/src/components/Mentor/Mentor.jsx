@@ -17,6 +17,8 @@ const Mentor = () => {
       <button onClick={() => window.location.href = '/academicsinfo'}>
        Add Academics Info
       </button>
+      <p>contact student via Email</p>
+      <button onClick={()=>window.location.href='/Email'}>email</button>
     </div>
   );
 }

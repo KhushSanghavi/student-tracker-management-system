@@ -13,6 +13,7 @@ import TeachersSeeAcademicsInfo from "./Teachers/TeachersDataAcademicsInfo";
 import MentorSeePersonalInfo from "./Mentor/MentorDataPersonalInfo";
 import MentorSeeAcademicsInfo from "./Mentor/MentorDataAcademicsInfo";
 import Register from "./Registeration/Register";
+import Email from "./EmailComponent/Email";
 
 function Routess() {
   return (
@@ -44,6 +45,7 @@ function Routess() {
           path="/mentor_academics_info_check"
           element={<MentorSeeAcademicsInfo />}
         />
+        <Route path="/email" element={<Email/>} />
         <Route path="/register" element={<Register />} />
       </Routes>
     </Router>
