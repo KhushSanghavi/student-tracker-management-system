@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 
 
@@ -13,6 +14,7 @@ const Email = () => {
     emailjs.sendForm('service_xygi3us', 'template_thr0ub8', form.current, 'MAFvPDyURri7UoPlc')
       .then((result) => {
           console.log(result.text);
+          alert("Notification Sent Successfully!");
       }, (error) => {
           console.log(error.text);
       });
@@ -28,6 +30,8 @@ const Email = () => {
       <label>Message</label>
       <textarea name="message" />
       <input type="submit" value="Send" />
+      <p>return to mentor page</p>
+      <Link to='/mentor' className ='member_btn'>Mentor</Link>
     </form>
     </StyledWrapper>
   );
@@ -49,6 +53,11 @@ body {
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
    }
+   .member-btn {
+    color: var(--primary-500);
+    letter-spacing: var(--letter-spacing);
+    margin-left: 0.25rem;
+  }
    
    label {
     display: block;

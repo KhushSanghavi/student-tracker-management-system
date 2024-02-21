@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from 'styled-components';
-
+import { Link } from 'react-router-dom';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -11,7 +11,7 @@ const Register = () => {
   });
 
   const [errors, setErrors] = useState({});
-
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -35,7 +35,15 @@ const Register = () => {
         });
 
         if (response.ok) {
+          setFormData({
+            username: "",
+            email: "",
+            password: "",
+            userType: "student",
+          });
           console.log("Registration successful");
+          alert("User created! Go back to home page.")
+          
           // Optionally, you can redirect the user or perform other actions upon successful registration.
         } else {
           console.error("Registration failed");
@@ -134,6 +142,8 @@ const Register = () => {
         </div>
         <div>
           <button type="submit">Register</button>
+          <p>Return to Home page</p>
+          <Link to='/' className='member_btn'>Home</Link>
         </div>
       </form>
     </div>
@@ -146,7 +156,7 @@ const StyledWrapper = styled.section`
 .container {
   position: relative;
   top: 100px;
-  max-width: 400px;
+  max-width: 500px;
   margin: 0 auto;
   padding: 20px;
   background-color: #f5f5f5;

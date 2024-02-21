@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styled from 'styled-components';
 
 const AdminRegister = () => {
   const [formData, setFormData] = useState({
@@ -37,6 +38,7 @@ const AdminRegister = () => {
           // Optionally, you can redirect the user or perform other actions upon successful registration.
         } else {
           console.error("Registration failed");
+          alert("User created! Go back to home page.")
           // Handle the error, such as displaying an error message to the user.
         }
       } catch (error) {
@@ -76,10 +78,12 @@ const AdminRegister = () => {
   };
 
   return (
+    <StyledWrapper>
     <div>
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
+      
+      <form className="container" onSubmit={handleSubmit}>
         <div>
+          <h2>Register</h2>
           <label htmlFor="username">Username:</label>
           <input
             type="text"
@@ -116,7 +120,7 @@ const AdminRegister = () => {
           {errors.password && <div className="error">{errors.password}</div>}
         </div>
         <div>
-          <label htmlFor="userType">User Type:</label>
+          <label htmlFor="userType">Assign Roles:</label>
           <select
             id="userType"
             name="userType"
@@ -125,7 +129,7 @@ const AdminRegister = () => {
           >
             <option value="student">Student</option>
             <option value="mentor">Mentor</option>
-            <option value="admin">Admin</option>
+          {/* <option value="admin">Admin</option> */}
           </select>
         </div>
         <div>
@@ -133,7 +137,64 @@ const AdminRegister = () => {
         </div>
       </form>
     </div>
+    </StyledWrapper>
   );
 };
+
+const StyledWrapper = styled.section`
+.container {
+  position: relative;
+  top: 100px;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container div {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+select {
+  height: 40px; /* Adjust the height as needed */
+}
+
+.error {
+  color: #ff0000;
+  font-size: 14px;
+}
+
+button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+`
 
 export default AdminRegister;

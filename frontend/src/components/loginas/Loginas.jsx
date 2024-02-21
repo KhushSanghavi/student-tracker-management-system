@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 //import Navbar from '../navbar/Navbar';
 import "./Loginas.modules.css";
@@ -7,6 +7,23 @@ import main from "../navbar/main.svg";
 import Logo from "../navbar/Logo";
 
 const Loginas = () => {
+  const [theme, setTheme] = useState(
+    localStorage.getItem('theme') || 'light'
+  );
+  const toggleTheme = () => {
+    if (theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  };
+
+
+  useEffect(() => {
+    localStorage.setItem('theme', theme);
+    document.body.className = theme;
+  }, [theme]);
+
   const navigate = useNavigate();
 
   const handleButtonClick = (selection) => {
@@ -21,6 +38,9 @@ const Loginas = () => {
           <img src={Name} alt="name" />
         </div>
       </nav>
+      <div className={`App ${theme}`}>
+      <button className="togglebutton" onClick={toggleTheme}>Dark Mode</button>
+    </div>
       <div className="home-container login" style={{ overflow: "hidden" }}>
         <div>
           <h1>Sakec Action Tracker</h1>
